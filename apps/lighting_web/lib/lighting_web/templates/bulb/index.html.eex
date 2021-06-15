@@ -1,0 +1,38 @@
+<h1>Listing Bulbs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th><%=to_string(length(@bulbs)) %> </th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for bulb <- @bulbs do %>
+    <tr>
+      <td><%=bulb.label %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.bulb_path(@conn, :show, bulb) %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+  </thead>
+  <tbody>
+    <%= for device <- @devices do %>
+      <tr>
+        <td><%= device.label %></td>
+        <td><%= device.color.hue %> </td>
+        <td><%= device.color.saturation %> </td>
+        <td><%= device.color.brightness %> </td>
+        <td><%= device.color.kelvin %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

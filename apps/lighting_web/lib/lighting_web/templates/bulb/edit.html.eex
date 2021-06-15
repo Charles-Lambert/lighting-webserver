@@ -1,0 +1,5 @@
+<h1>Edit Bulb</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.bulb_path(@conn, :update, @bulb)) %>
+
+<span><%= link "Back", to: Routes.bulb_path(@conn, :index) %></span>

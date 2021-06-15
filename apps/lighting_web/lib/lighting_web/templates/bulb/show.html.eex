@@ -1,0 +1,56 @@
+<%=color_tag(@bulb.color, :h1, @bulb.label) %> 
+
+<span><%= link "\u21BB", to: Routes.bulb_path(@conn, :show, @bulb) %></span>
+
+<%= form_for @conn, Routes.bulb_path(@conn, :set_color, @bulb), fn f -> %>
+  <div>
+    <table>
+      <tr>
+        <th> Hue </th>
+        <th> Saturation</th>
+        <th> Brightness </th>
+        <th> Kelvin </th>
+        <th> Time </th>
+      </tr>
+      <tr>
+        <td> <%= @bulb.color.hue %> </td>
+        <td> <%= @bulb.color.saturation %> </td>
+        <td> <%= @bulb.color.brightness %> </td>
+        <td> <%= @bulb.color.kelvin %> </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td> <%= text_input f, :hue, placeholder: @bulb.color.hue %> </td>
+        <td><%= text_input f, :saturation, placeholder: @bulb.color.saturation %> </td>
+        <td><%= text_input f, :brightness, placeholder: @bulb.color.brightness %></td>
+        <td><%= text_input f, :kelvin, placeholder: @bulb.color.kelvin %></td>
+        <td><%= text_input f, :time, placeholder: 10000 %></td>
+      </tr>
+    </table>
+  </div>
+  <%= submit "Change Colour" %>
+<% end %>
+
+
+<%= form_for @conn, Routes.bulb_path(@conn, :set_color, @bulb), fn f -> %>
+  <%= color_input f, :hex_color %>
+  <%= label f, :kelvin %>
+  <%= number_input f, :kelvin, placeholder: @bulb.color.kelvin %>
+  <%= label f, :time %>
+  <%= number_input f, :time, placeholder: 10000 %>
+
+  <%= submit "Change Colour" %>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Label:</strong>
+    <%= @bulb.label %> </li>
+  <li>
+    <strong>ID:</strong>
+    <%= @bulb.id %>
+  </li>
+</ul>
+<span><%=# link "Edit", to: Routes.bulb_path(@conn, :edit, @bulb) %></span>
+<span><%= link "Back", to: Routes.bulb_path(@conn, :index) %></span>
